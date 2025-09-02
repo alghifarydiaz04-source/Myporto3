@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Diaz- Designer & Coder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body { background: #fff; color: #333; overflow-x: hidden; }
+
+    /* HEADER */
+    header {
+      width: 100%; background: linear-gradient(90deg, #111, #222); color: #fff;
+      padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    header .logo { font-size: 28px; font-weight: 700; letter-spacing: 2px; }
+    header nav a {
+      color: #fff; text-decoration: none; margin: 0 15px; font-weight: 500; transition: 0.3s; position: relative;
+    }
+    header nav a::after {
+      content: ""; position: absolute; left: 0; bottom: -5px; width: 0; height: 2px; background: #f39c12; transition: 0.3s;
+    }
+    header nav a:hover { color: #f39c12; }
+    header nav a:hover::after { width: 100%; }
+
+    /* HERO */
+    .hero {
+      display: flex; justify-content: center; align-items: center; padding: 100px 20px;
+      text-align: center; background: linear-gradient(135deg, #6a11cb, #2575fc); color: #fff;
+    }
+    .hero .left, .hero .right { flex: 1; padding: 20px; }
+    .hero h1 { font-size: 48px; font-weight: 700; }
+    .hero p { margin-top: 10px; font-size: 18px; opacity: 0.9; }
+    .hero img {
+      max-width: 260px; border-radius: 50%; margin: 0 40px; border: 6px solid rgba(255,255,255,0.5);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    /* GENERIC SECTION */
+    section { padding: 80px 20px; }
+    section h2 {
+      text-align: center; margin-bottom: 40px; font-size: 28px; font-weight: 700; color: #222;
+    }
+
+    /* CV SECTION */
+    .cv-container {
+      max-width: 1000px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    }
+    .cv-box {
+      background: #fff; border-radius: 15px; padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s;
+    }
+    .cv-box:hover { transform: translateY(-6px); }
+    .cv-box h3 { color: #2575fc; margin-bottom: 15px; font-size: 20px; }
+    .cv-item { margin-bottom: 20px; }
+    .cv-item h4 { font-size: 16px; color: #111; margin-bottom: 5px; }
+    .cv-item span { font-size: 14px; color: #666; display: block; margin-bottom: 8px; }
+    .cv-item p { font-size: 14px; color: #444; }
+
+    /* SKILLS BAR */
+    .skills { margin-top: 15px; }
+    .skill { margin-bottom: 12px; }
+    .skill span {
+      font-size: 14px; font-weight: 500; display: block; margin-bottom: 5px;
+    }
+    .progress-bar {
+      width: 100%; background: #eee; border-radius: 8px; overflow: hidden; height: 10px;
+    }
+    .progress {
+      height: 10px; background: linear-gradient(135deg, #6a11cb, #2575fc);
+    }
+
+    /* DOWNLOAD CV BUTTON */
+    .download-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .download-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-3px);
+    }
+
+    /* LATEST WORK */
+    .works { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+    .work-card {
+      background: #fff; border-radius: 15px; padding: 30px; width: 300px; text-align: left;
+      transition: 0.4s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;
+    }
+    .work-card:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .work-card h3 { font-size: 20px; margin-bottom: 10px; color: #2575fc; }
+    .work-card p { color: #555; font-size: 15px; }
+
+    /* PORTFOLIO */
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px; max-width: 1100px; margin: auto;
+    }
+    .portfolio-item {
+      background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: 0.4s; cursor: pointer;
+    }
+    .portfolio-item img { width: 100%; height: 200px; object-fit: cover; }
+    .portfolio-item h3 { padding: 15px; font-size: 18px; color: #2575fc; }
+    .portfolio-item:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    /* BLOG */
+    .blog-list {
+      display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; max-width: 1100px; margin: auto;
+    }
+    .blog-card {
+      background: #fff; border-radius: 15px; padding: 20px; width: 320px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s;
+    }
+    .blog-card:hover { transform: translateY(-8px); }
+    .blog-card h3 { font-size: 20px; margin-bottom: 10px; color: #6a11cb; }
+    .blog-card p { font-size: 15px; color: #555; margin-bottom: 15px; }
+    .blog-card a {
+      text-decoration: none; color: #2575fc; font-weight: 500; transition: 0.3s;
+    }
+    .blog-card a:hover { color: #f39c12; }
+
+    /* CONTACT */
+    .contact-container { max-width: 700px; margin: auto; text-align: center; }
+    .contact-container form { display: flex; flex-direction: column; gap: 15px; }
+    .contact-container input, .contact-container textarea {
+      padding: 15px; border-radius: 10px; border: 1px solid #ccc; font-size: 15px;
+      transition: 0.3s; width: 100%;
+    }
+    .contact-container input:focus, .contact-container textarea:focus {
+      border-color: #2575fc; outline: none; box-shadow: 0 0 8px rgba(37,117,252,0.3);
+    }
+    .contact-container button {
+      padding: 15px; background: linear-gradient(135deg, #6a11cb, #2575fc); border: none;
+      border-radius: 10px; color: #fff; font-size: 16px; font-weight: 600;
+      cursor: pointer; transition: 0.3s;
+    }
+    .contact-container button:hover { opacity: 0.9; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 25px; background: #111; color: #fff; font-size: 14px; margin-top: 50px;
+    }
+    footer a { color: #f39c12; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Diaz</div>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#cv">cv</a>
+      <a href="#portfolio">portfolio</a>
+      <a href="#blog">blog</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="left">
+      <h1>designer</h1>
+      <p>Product designer specialising in UI design and design systems.</p>
+    </div>
+    <img src="Gambar WhatsApp 2025-09-02 pukul 11.36.27_4c0b5f2f.jpg" alt="Profile Picture">
+    <div class="right">
+      <h1>&lt;coder&gt;</h1>
+      <p>Front end developer who writes clean, elegant and efficient code.</p>
+    </div>
+  </section>
+
+  <!-- CV SECTION -->
+  <section id="cv">
+    <h2>CURRICULUM VITAE</h2>
+    <div class="cv-container">
+      <!-- Experience -->
+      <div class="cv-box">
+        <h3>Experience</h3>
+        <div class="cv-item">
+          <h4>UI/UX Designer - Creative Studio</h4>
+          <span>2022 - Present</span>
+          <p>Designing product interfaces and creating design systems.</p>
+        </div>
+        <div class="cv-item">
+          <h4>Front-End Developer - Freelance</h4>
+          <span>2020 - 2022</span>
+          <p>Developing modern responsive websites for global clients.</p>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="cv-box">
+        <h3>Education</h3>
+        <div class="cv-item">
+          <h4>Bachelor of Computer Science</h4>
+          <span>2017 - 2021 | University of Technology</span>
+          <p>Specialized in software engineering and web technologies.</p>
+        </div>
+        <div class="cv-item">
+          <h4>High School</h4>
+          <span>2014 - 2017</span>
+          <p>Science major with focus on math and computer studies.</p>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="cv-box" style="grid-column: span 2;">
+        <h3>Skills</h3>
+        <div class="skills">
+          <div class="skill">
+            <span>UI Design</span>
+            <div class="progress-bar"><div class="progress" style="width:90%"></div></div>
+          </div>
+          <div class="skill">
+            <span>HTML / CSS / JS</span>
+            <div class="progress-bar"><div class="progress" style="width:85%"></div></div>
+          </div>
+          <div class="skill">
+            <span>React</span>
+            <div class="progress-bar"><div class="progress" style="width:75%"></div></div>
+          </div>
+          <div class="skill">
+            <span>Figma</span>
+            <div class="progress-bar"><div class="progress" style="width:80%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD CV BUTTON -->
+    <div style="text-align:center; margin-top:40px;">
+      <a href="Gambar WhatsApp 2025-09-01 pukul 18.15.28_452e8a4a.jpg" download class="download-btn">⬇ Download CV</a>
+    </div>
+  </section>
+
+  <!-- LATEST WORK -->
+  <section class="work-section">
+    <h2>SOME OF MY LATEST WORK</h2>
+    <div class="works">
+      <div class="work-card">
+        <h3>Creating a lean design system</h3>
+        <p>Design system</p>
+      </div>
+      <div class="work-card">
+        <h3>Interior design news feed</h3>
+        <p>Side project</p>
+      </div>
+      <div class="work-card">
+        <h3>Qantas map search</h3>
+        <p>Product design</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2>PORTFOLIO</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x250" alt="Project 1">
+        <h3>Project One</h3>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x250" alt="Project 2">
+        <h3>Project Two</h3>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://via.placeholder.com/400x250" alt="Project 3">
+        <h3>Project Three</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <h2>BLOG</h2>
+    <div class="blog-list">
+      <div class="blog-card">
+        <h3>Design Trends 2025</h3>
+        <p>Exploring the latest UI/UX design trends for modern websites.</p>
+        <a href="#">Read more →</a>
+      </div>
+      <div class="blog-card">
+        <h3>Clean Code Tips</h3>
+        <p>Best practices for writing elegant and maintainable code.</p>
+        <a href="#">Read more →</a>
+      </div>
+      <div class="blog-card">
+        <h3>My Freelance Journey</h3>
+        <p>Sharing my experiences working with clients worldwide.</p>
+        <a href="#">Read more →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>CONTACT ME</h2>
+    <div class="contact-container">
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Diaz | Built with ❤️ <br>
+    <a href="#about">about</a> | <a href="#cv">cv</a> | <a href="#portfolio">portfolio</a> | <a href="#contact">contact</a>
+  </footer>
+
+</body>
+</html>
